@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Pembayaran</title>
+    <style>
+       :root {
+    --main-color--: #ab7d40;
+    --text-color--: #442f16;
+    --bg-color--: white;
+    --hover-color: #936b36;
+    --button-hover-bg: #442f16;
+    --text-light: #fff;
+    --bg-light: #f9f9f9;
+}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: var(--hover-color);
+            color: #fff;
+            padding: 15px 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: var(--button-hover-bg);
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: var(--hover-color);
+        }
+        footer {
+            text-align: center;
+            padding: 10px 20px;
+            background-color: var(--hover-color);
+            color: #fff;
+            margin-top: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            border-radius: 5px;
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Checkout Pembayaran</h1>
+    </header>
+    <div class="container">
+        <h2>Detail Pembayaran</h2>
+        <form id="checkoutForm">
+            <!-- Informasi Pelanggan -->
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" id="nama" name="nama" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="alamat">Alamat Pengiriman</label>
+                <textarea id="alamat" name="alamat" rows="3" required></textarea>
+            </div>
+            
+            <!-- Pilihan Metode Pembayaran -->
+            <h3>Metode Pembayaran</h3>
+            <div class="form-group">
+                <label for="metode-pembayaran">Pilih Metode</label>
+                <select id="metode-pembayaran" name="metode" required>
+                    <option value="transfer">Transfer Bank</option>
+                    <option value="kartu-kredit">Kartu Kredit</option>
+                    <option value="e-wallet">E-Wallet (OVO, GoPay, DANA)</option>
+                    <option value="cod">Cash on Delivery</option>
+                </select>
+            </div>
+
+            <!-- Informasi Tambahan -->
+            <div class="form-group">
+                <label for="catatan">Catatan Tambahan (Opsional)</label>
+                <textarea id="catatan" name="catatan" rows="3"></textarea>
+            </div>
+
+            <!-- Tombol Checkout -->
+            <button type="button" onclick="getValues()">Bayar Sekarang</button>
+        </form>
+
+        <!-- Tempat menampilkan hasil input -->
+        <div id="result" class="result" style="display:none;"></div>
+    </div>
+    <footer>
+        &copy; 2025 E-Commerce Anda - Semua Hak Dilindungi.
+    </footer>
+
+    <script>
+        function getValues() {
+            const nama = document.getElementById("nama").value;
+            const email = document.getElementById("email").value;
+            const alamat = document.getElementById("alamat").value;
+            const metodePembayaran = document.getElementById("metode-pembayaran").value;
+            const catatan = document.getElementById("catatan").value;
+
+            const resultDiv = document.getElementById("result");
+
+            resultDiv.innerHTML = `
+                <h3>Detail Pembayaran Anda</h3>
+                <p><strong>Nama:</strong> ${nama}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Alamat:</strong> ${alamat}</p>
+                <p><strong>Metode Pembayaran:</strong> ${metodePembayaran}</p>
+                <p><strong>Catatan:</strong> ${catatan || 'Tidak ada catatan.'}</p>
+            `;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
